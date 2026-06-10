@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>داليا الصلوي ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Aref+Ruqaa+Ink:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Cairo',sans-serif;
+    height:100vh;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(255,105,180,.25), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(255,0,100,.15), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(180,90,255,.18), transparent 40%),
+    linear-gradient(135deg,#12051e,#2d103f,#4c144f);
+}
+
+#scene{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+/* =====================
+   BOKEH LIGHTS
+===================== */
+.bokeh{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    filter:blur(10px);
+    animation:floatLight linear infinite;
+}
+
+@keyframes floatLight{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+/* =====================
+   STARS
+===================== */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.2;
+        transform:scale(1);
+    }
+    to{
+        opacity:1;
+        transform:scale(2);
+    }
+}
+
+/* =====================
+   FLOWERS
+===================== */
+.flower{
+    position:absolute;
+    font-size:22px;
+    opacity:0;
+    transform:scale(0);
+    filter:
+      drop-shadow(0 0 12px rgba(255,90,150,.8))
+      drop-shadow(0 0 30px rgba(255,0,120,.4));
+    animation:
+      bloom 3s forwards;
+}
+
+@keyframes bloom{
+    0%{
+        opacity:0;
+        transform:scale(0) rotate(0deg);
+    }
+    60%{
+        opacity:1;
+        transform:scale(1.2) rotate(8deg);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1) rotate(0deg);
+    }
+}
+
+/* =====================
+   NAME
+===================== */
+.name-container{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+}
+
+.name{
+    opacity:0;
+    transform:translateY(40px) scale(.8);
+    font-family:'Aref Ruqaa Ink', serif;
+    font-size:clamp(3rem,8vw,7rem);
+    background:linear-gradient(
+      90deg,
+      #ffe3f1,
+      #ffd1e4,
+      #ffdca8,
+      #fff1d5,
+      #ffbfd7
+    );
+    background-size:300% 300%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:
+      shine 5s linear infinite;
+    text-shadow:
+      0 0 15px rgba(255,180,220,.8),
+      0 0 35px rgba(255,120,200,.6),
+      0 0 60px rgba(255,200,140,.5);
+}
+
+.name.show{
+    animation:
+      revealName 2.5s forwards,
+      shine 5s linear infinite;
+}
+
+@keyframes revealName{
+    from{
+        opacity:0;
+        transform:translateY(50px) scale(.8);
+        filter:blur(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes shine{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+/* =====================
+   MESSAGE
+===================== */
+.message{
+    margin-top:20px;
+    color:#fff;
+    font-size:clamp(1rem,2vw,1.4rem);
+    opacity:0;
+    text-shadow:0 0 15px rgba(255,180,220,.6);
+}
+
+.message.show{
+    animation:fadeMsg 2s forwards;
+}
+
+@keyframes fadeMsg{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =====================
+   PETALS
+===================== */
+.petal{
+    position:absolute;
+    top:-30px;
+    color:#ff6b9d;
+    font-size:18px;
+    opacity:.9;
+    pointer-events:none;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-20px) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) translateX(80px) rotate(360deg);
+    }
+}
+
+/* =====================
+   GLOW CENTER
+===================== */
+.center-glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:
+    radial-gradient(circle,
+    rgba(255,120,180,.25),
+    rgba(255,120,180,.08),
+    transparent 70%);
+    filter:blur(50px);
+    animation:pulse 5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+    }
+    50%{
+        transform:translate(-50%,-50%) scale(1.15);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene">
+
+    <div class="center-glow"></div>
+
+    <div class="name-container">
+        <div class="name" id="name">
+            داليا الصلوي
+        </div>
+
+        <div class="message" id="message">
+            إلى داليا الصلوي، أجمل وردة في عالمي ❤️
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const scene = document.getElementById('scene');
+
+/* =====================
+   BOKEH
+===================== */
+for(let i=0;i<35;i++){
+
+    const b = document.createElement('div');
+    b.className='bokeh';
+
+    let s=Math.random()*120+40;
+
+    b.style.width=s+'px';
+    b.style.height=s+'px';
+    b.style.left=Math.random()*100+'%';
+    b.style.animationDuration=(20+Math.random()*20)+'s';
+    b.style.animationDelay=(-Math.random()*30)+'s';
+
+    scene.appendChild(b);
+}
+
+/* =====================
+   STARS
+===================== */
+for(let i=0;i<120;i++){
+
+    const star=document.createElement('div');
+    star.className='star';
+
+    star.style.left=Math.random()*100+'%';
+    star.style.top=Math.random()*100+'%';
+    star.style.animationDelay=Math.random()*3+'s';
+
+    scene.appendChild(star);
+}
+
+/* =====================
+   FLOWER FRAME
+===================== */
+
+const centerX = window.innerWidth/2;
+const centerY = window.innerHeight/2;
+
+const flowers=[];
+
+for(let i=0;i<90;i++){
+
+    const angle=(Math.PI*2/90)*i;
+
+    const radiusX=Math.min(window.innerWidth*0.30,350);
+    const radiusY=Math.min(window.innerHeight*0.22,220);
+
+    const x=centerX + Math.cos(angle)*radiusX;
+    const y=centerY + Math.sin(angle)*radiusY;
+
+    const flower=document.createElement('div');
+    flower.className='flower';
+
+    flower.innerHTML=(Math.random()>.5)?'🌹':'🌺';
+
+    flower.style.left=centerX+'px';
+    flower.style.top=centerY+'px';
+
+    flower.dataset.x=x;
+    flower.dataset.y=y;
+
+    flower.style.animationDelay=(i*0.04)+'s';
+
+    scene.appendChild(flower);
+    flowers.push(flower);
+
+    setTimeout(()=>{
+        flower.style.transition="all 2.8s cubic-bezier(.19,1,.22,1)";
+        flower.style.left=x+'px';
+        flower.style.top=y+'px';
+    },100);
+}
+
+/* =====================
+   NAME REVEAL
+===================== */
+setTimeout(()=>{
+
+    flowers.forEach((f,index)=>{
+
+        const angle=(Math.PI*2/flowers.length)*index;
+
+        const x=centerX + Math.cos(angle)*470;
+        const y=centerY + Math.sin(angle)*320;
+
+        f.style.left=x+'px';
+        f.style.top=y+'px';
+        f.style.opacity='0.85';
+
+    });
+
+    document.getElementById('name').classList.add('show');
+
+},5500);
+
+setTimeout(()=>{
+    document.getElementById('message').classList.add('show');
+},7600);
+
+/* =====================
+   PETALS FALLING
+===================== */
+function createPetal(){
+
+    const petal=document.createElement('div');
+    petal.className='petal';
+    petal.innerHTML='🌸';
+
+    petal.style.left=Math.random()*100+'vw';
+    petal.style.fontSize=(12+Math.random()*18)+'px';
+
+    let duration=10+Math.random()*10;
+    petal.style.animationDuration=duration+'s';
+
+    scene.appendChild(petal);
+
+    setTimeout(()=>{
+        petal.remove();
+    },duration*1000);
+
+}
+
+setInterval(createPetal,350);
+
+/* =====================
+   PARALLAX
+===================== */
+document.addEventListener('mousemove',(e)=>{
+
+    const x=(e.clientX/window.innerWidth-.5)*20;
+    const y=(e.clientY/window.innerHeight-.5)*20;
+
+    document.querySelector('.center-glow')
+        .style.transform=
+        `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+
+});
+
+</script>
+
+</body>
+</html>
